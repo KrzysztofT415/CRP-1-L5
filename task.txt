@@ -1,0 +1,33 @@
+Zaimplementuj protokół SPEKE według opisu na liście 11. Program powinien składać się z dwóch podprogramów:
+
+program strony A
+program strony B do wyboru za pomocą parametru wywołania w konsoli.
+Jako G przyjmij grupę Zp* modulo p = 0xCE369E8F9F2B0F43C0E837CCEC78439B97FF11D2E8DD3DDC57836F8DE11DF848D1CF99615C23BAA3BCF87D9D5DDDE981CFA885647780FEFA21CB07265561AF679BA170E9547E125ECC7B340DCAC3D9F6BF38AF243B01125D1CB0ADCDD80024A235CF25B8ABD5DAEC18AE0E063673DAE2DBFB416AF60E1233320490E1218DA5AD16C91527076E36A7DA9623715428F80010BB9F30477BFCC89F3183D343184A18E938CAB6EF364BE069FA7BE251AA267C6BFE62F247AC1A72BE7830EDB769E195E3CD6BB13DD684FE10DD9C042A465ADF46E0C5EF6458D0304DEE3437B940C904B235DB669A4013198A8184AE7F060F903EAFAB3150E24C011CBE57FAD7BAA1B62DEFB53B2DF0F51019DC339D2D25AA00F904E1AA17E1005B (p ma 280 bajtów).
+
+Jako funkcję f przyjmij generację liczby całkowitej z bajtów wyniku SHA256 (big endian).
+
+Jako funkcję Hash przyjmij SHA256 (input powinien być zapisany na 280 bajtach, wypadowany z lewej).
+
+Jako funkcję Enc przyjmij AES-256 w trybie CBC, bez paddingu, z losowym IV (dołączonym jako pierwszy blok ciphertextu).
+
+C_A oraz C_B powinny mieć po 16 bajtów (128 bitów).
+
+Na samym początku, program powinien przyjąć hasło ze standardowego wejścia (bez znaku nowej linii!). Hasło powinno być ciągiem drukowalnych znaków ASCII (ang. Printable ASCII characters).
+
+Program powinien wykonywać protokół, drukując wysyłane wartości na standardowe wyjście w formacie base64. Gdy protokół dochodzi do momentu, gdy wymagany jest input drugiej strony, program powinien oczekiwać na standardowym wejściu na dane w formacie base64. Program powinien drukować na standardowe wyjście wynik sprawdzenia poprawności ustalonego klucza K:
+
+PASS, gdy sprawdzenie klucza powiedzie się,
+FAIL w przeciwnym przypadku.
+Jeśli sprawdzenie klucza przejdzie, należy wydrukować klucz na standardowe wyjście w formacie base64.
+
+Aby uzyskać punkty za program:
+
+Program strony A musi potrafić ustalić wspólny klucz z implementacją dostępną tutaj: https://cs.pwr.edu.pl/slowik/storage/krypto21/2f5042207da76ebe/#hw7-tester
+Program strony A musi potrafić ustalić wspólny klucz z programem strony B.
+Losowo wybrany program A musi potrafić ustalić wspólny klucz z losowo wybranym programem strony B (spośród programów które uzyskały pełną liczbę punktów)
+Program strony A musi zwrócić FAIL kiedy druga strona użyje niepoprawnego hasła (i vice versa) (dla wszystkich przypadków powyżej).
+Możesz przyjąć, że dane są poprawnie sformatowane, tj. nie musisz sprawdzać np. długości E1 (ale możesz).
+
+
+
+Przykład użycia programu A i implementacji ze strony dostępny jest na stronie (https://cs.pwr.edu.pl/slowik/storage/krypto21/2f5042207da76ebe)
